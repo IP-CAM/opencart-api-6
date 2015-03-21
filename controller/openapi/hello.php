@@ -8,4 +8,9 @@ class ControllerOpenapiHello extends AbstractOpenApi
     {
         $this->output(["hello" => "halil"]);
     }
+
+   public function test() {
+
+   }
+
 }
