@@ -6,6 +6,6 @@ class ControllerOpenapiHello extends AbstractOpenApi
 
     public function index()
     {
-        $this->output(["hello" => "yunus"]);
+        $this->output(["hello" => "bitirim ikili"]);
     }
 }
