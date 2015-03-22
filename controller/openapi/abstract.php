@@ -154,7 +154,7 @@ abstract class AbstractOpenApi extends Controller
     {
         $message = self::httpCodes($code);
         $this->get("response")->addHeader(sprintf("HTTP/1.1 %s %s", $code, $message));
-        $this->response(array_merge(["message" => $message], (array)$data));
+        $this->jsonResponse(array_merge(["message" => $message], (array)$data));
     }
 
     protected function tryPhpInput()
