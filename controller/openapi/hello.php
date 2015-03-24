@@ -22,6 +22,10 @@ class ControllerOpenapiHello extends AbstractOpenApi
         /** @var ModelCatalogCategory $model */
         $model = $this->model("catalog/category");
 
+
+        throw new HttpApiException("Product not found", self::HTTP_NOT_FOUND);
+
+
         /** @var ModelCatalogAttribute $adminModel */
         $adminModel = $this->adminModel("catalog/attribute");
 
