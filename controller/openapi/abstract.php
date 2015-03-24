@@ -27,19 +27,21 @@ abstract class AbstractOpenApi extends Controller
             $this->tryPhpInput(); // accepts http raw body
         }
 
-        if (isset($route[$method])) {
-            $actionName = sprintf("%s%s", $route[$method], "Action");
+        try {
+            if (isset($route[$method])) {
+                $actionName = sprintf("%s%s", $route[$method], "Action");
+                if (is_callable([$this, $actionName])) {
+                    return call_user_func_array([$this, $actionName], []);
+                }
+            }
+
+            $actionName = sprintf("%s%s%s", $method, ucfirst(strtolower($this->getName())), "Action");
             if (is_callable([$this, $actionName])) {
                 return call_user_func_array([$this, $actionName], []);
             }
-        }
-
-        $actionName = sprintf("%s%s%s", $method, ucfirst(strtolower($this->getName())), "Action");
-        if (is_callable([$this, $actionName])) {
-            return call_user_func_array([$this, $actionName], []);
-        }
-
-        return $this->notFound();
+        } catch (Exception $e) {
+            return $this->notFound(array('errorMessage' => $e->getMessage, 'errorCode' => $e->getCode););
+        }        
     }
 
     protected function jsonResponse(array $data = [])
