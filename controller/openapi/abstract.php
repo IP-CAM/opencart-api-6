@@ -40,7 +40,7 @@ abstract class AbstractOpenApi extends Controller
                 return call_user_func_array([$this, $actionName], []);
             }
         } catch (Exception $e) {
-            return $this->notFound(json_encode(array('errorMessage' => $e->getMessage, 'errorCode' => $e->getCode)));
+            return $this->addStatusHeader($e->getCode(), ["error" => $e->getMessage()]);
         }        
     }
 
