@@ -26,7 +26,7 @@ class OpenCartRequestAdapter implements RequestAdapterInterface
     /**
      * @return array|null
      */
-    public function getRequestData()
+    public function getRequest()
     {
         return !empty($this->request) ? $this->request : null;
     }
@@ -42,7 +42,7 @@ class OpenCartRequestAdapter implements RequestAdapterInterface
     /**
      * @return array|null
      */
-    public function getPostData()
+    public function getPost()
     {
         return !empty($this->post) ? $this->post : null;
     }
@@ -50,7 +50,7 @@ class OpenCartRequestAdapter implements RequestAdapterInterface
     /**
      * @return array|null
      */
-    public function getGetData()
+    public function getParam()
     {
         return !empty($this->get) ? $this->get : null;
     }
@@ -58,7 +58,7 @@ class OpenCartRequestAdapter implements RequestAdapterInterface
     /**
      * @return array|null
      */
-    public function getServerData()
+    public function getServerVariables()
     {
         return !empty($this->server) ? $this->server : null;
     }
@@ -66,7 +66,7 @@ class OpenCartRequestAdapter implements RequestAdapterInterface
     /**
      * @return array|null
      */
-    public function getFilesData()
+    public function getFiles()
     {
         return !empty($this->files) ? $this->files : null;
     }

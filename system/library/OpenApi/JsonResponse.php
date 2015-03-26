@@ -2,7 +2,7 @@
 
 namespace OpenApi;
 
-class JsonResponse extends AbstractResponse
+class JsonResponse extends BaseResponse
 {
     public function __construct($data)
     {
@@ -12,6 +12,11 @@ class JsonResponse extends AbstractResponse
     public function doResponse()
     {
         return json_encode($this->data);
+    }
+
+    public function getHeaders()
+    {
+        // TODO: Implement getHeaders() method.
     }
 
 

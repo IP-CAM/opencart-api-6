@@ -2,12 +2,12 @@
 
 namespace OpenApi\Exception;
 
-use OpenApi\AbstractResponse;
+use OpenApi\BaseResponse;
 
 class NotFoundException extends ApiException
 {
     public function __construct($message, $code = null, $prev = null)
     {
-        parent::__construct($message, AbstractResponse::HTTP_NOT_FOUND, $prev);
+        parent::__construct($message, BaseResponse::HTTP_NOT_FOUND, $prev);
     }
 }

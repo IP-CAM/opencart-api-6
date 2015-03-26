@@ -20,26 +20,26 @@ class Request
 
     public function getPost($key, $default = null)
     {
-        $posts = $this->requestAdapter->getPostData();
+        $posts = $this->requestAdapter->getPost();
         return (isset($posts[$key])) ? $posts[$key] : $default;
     }
 
     public function getParam($key, $default = null)
     {
-        $get = $this->requestAdapter->getGetData();
+        $get = $this->requestAdapter->getParam();
         return (isset($get[$key])) ? $get[$key] : $default;
     }
 
     public function getFile($key)
     {
-        $files = $this->requestAdapter->getFilesData();
+        $files = $this->requestAdapter->getFiles();
         return (isset($files[$key])) ? $files[$key] : null;
     }
 
     public function serverParam($key)
     {
         $key = strtoupper($key);
-        $server = $this->requestAdapter->getServerData();
+        $server = $this->requestAdapter->getServerVariables();
         return (isset($server[$key])) ? $server[$key] : null;
     }
 

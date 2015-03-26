@@ -2,7 +2,7 @@
 
 namespace OpenApi;
 
-class Response extends AbstractResponse
+class Response extends BaseResponse
 {
     private $data;
 
@@ -15,5 +15,11 @@ class Response extends AbstractResponse
     {
         return $this->data;
     }
+
+    public function getHeaders()
+    {
+        // TODO: Implement getHeaders() method.
+    }
+
 
 }

@@ -26,9 +26,16 @@ class Core
     {
         $router = new Router($this->getRequest());
         $action = $router->route();
+
+        var_dump($action->getController());
+        exit;
+
+        var_dump(is_callable([$action->getController(), $action->getAction()]));
+        exit;
+
         $openCartAction = new \Action(sprintf("%s/%s", $action->getController(), $action->getAction()), $action->getArguments());
         $result = $openCartAction->execute($this->registry);
-        if ($result instanceof AbstractResponse) {
+        if ($result instanceof BaseResponse) {
             $this->getRegistry()->get("response")->setOutput($result->doResponse());
         }
 

@@ -2,7 +2,7 @@
 
 namespace OpenApi;
 
-abstract class AbstractResponse {
+abstract class BaseResponse {
 
     const HTTP_CONTINUE = 100;
     const HTTP_SWITCHING_PROTOCOLS = 101;
@@ -134,6 +134,7 @@ abstract class AbstractResponse {
     );
 
     public abstract function __construct($data);
+    public abstract function getHeaders();
     public abstract function doResponse();
 
 
