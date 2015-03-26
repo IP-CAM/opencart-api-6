@@ -4,6 +4,10 @@ namespace OpenApi;
 
 class JsonResponse extends BaseResponse
 {
+
+    private $headers = array();
+    private $data;
+
     public function __construct($data)
     {
         $this->data = $data;
@@ -16,7 +20,12 @@ class JsonResponse extends BaseResponse
 
     public function getHeaders()
     {
-        // TODO: Implement getHeaders() method.
+        return $this->headers;
+    }
+
+    public function addHeader($header)
+    {
+        $this->headers[] = $header;
     }
 
 

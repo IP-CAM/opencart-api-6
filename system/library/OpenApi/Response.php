@@ -5,6 +5,7 @@ namespace OpenApi;
 class Response extends BaseResponse
 {
     private $data;
+    private $headers = array();
 
     public function __construct($data)
     {
@@ -18,8 +19,12 @@ class Response extends BaseResponse
 
     public function getHeaders()
     {
-        // TODO: Implement getHeaders() method.
+        return $this->headers;
     }
 
+    public function addHeader($header)
+    {
+        $this->headers[] = $header;
+    }
 
 }

@@ -6,15 +6,25 @@ use OpenApi\Core\Controller;
 
 class Action
 {
+    private $namespace;
     private $controller;
     private $action;
     private $arguments;
 
-    function __construct($controller, $action = Controller::DEFAULT_ACTION, $arguments = array())
+    function __construct($namespace, $controller, $action = Controller::DEFAULT_ACTION, $arguments = array())
     {
+        $this->namespace = $namespace;
         $this->controller = $controller;
         $this->action = $action;
         $this->arguments = $arguments;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNamespace()
+    {
+        return $this->namespace;
     }
 
     /**
