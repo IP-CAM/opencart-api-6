@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenApi;
+namespace OpenApi\Http;
 
 abstract class BaseResponse {
 
@@ -136,7 +136,6 @@ abstract class BaseResponse {
     public abstract function __construct($data);
     public abstract function getHeaders();
     public abstract function doResponse();
-
 
     public static function getHttpCodeDescription($code)
     {

@@ -1,5 +1,5 @@
 <?php
-namespace OpenApi;
+namespace OpenApi\Http;
 
 use OpenApi\Adapter\RequestAdapterInterface;
 
@@ -10,7 +10,6 @@ class Request
     const HTTP_METHOD_GET = "GET";
     const HTTP_METHOD_PATCH = "PATCH";
     const HTTP_METHOD_DELETE = "DELETE";
-
     private $requestAdapter;
 
     public function __construct(RequestAdapterInterface $requestAdapter)
@@ -72,5 +71,16 @@ class Request
     public function requestMethod()
     {
         return strtoupper($this->serverParam("request_method"));
+    }
+
+    public function contentType()
+    {
+        $type = $this->serverParam("content_type");
+        return (empty($type)) ? $this->getDefaultContentType() : $type;
+    }
+
+    public function getDefaultContentType()
+    {
+        return self::HTTP_CONTENT_TYPE_JSON;
     }
 }

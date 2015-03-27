@@ -2,7 +2,7 @@
 
 namespace OpenApi\Adapter;
 
-use OpenApi\BaseResponse;
+use OpenApi\Http\BaseResponse;
 
 interface ResponseAdapterInterface {
     public function __construct(\Response $response);

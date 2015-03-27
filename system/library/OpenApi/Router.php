@@ -5,6 +5,7 @@ namespace OpenApi;
 use OpenApi\Core\Controller;
 use OpenApi\Exception\NotFoundException;
 use OpenApi\Util\TextUtil;
+use OpenApi\Http\Request;
 
 class Router
 {
@@ -32,7 +33,7 @@ class Router
         $httpRequestMethod = strtolower($this->request->requestMethod());
 
         $parts = explode("/", $action);
-        $controller = array_shift($parts);
+        $controller = sprintf("%s %s", array_shift($parts), "Controller");
         $method = array_shift($parts);
         $arguments = $parts;
 
@@ -47,10 +48,13 @@ class Router
             throw new NotFoundException("Requested endpoint not found");
         }
 
-        if (!preg_match("/^[a-z]/i", $method) && !is_callable([$action->getController(), $requestedMethod])) {
-            $arguments[] = $method;
+        if (!is_callable([$action->getController(), $requestedMethod])) {
+            if (!empty($method)) {
+                $arguments[] = $method;
+            }
             $method = null;
         }
+
 
         $action->setArguments($arguments);
 

@@ -56,7 +56,7 @@ class Action
      */
     public function getArguments()
     {
-        return $this->arguments;
+        return (!empty($this->arguments)) ? $this->arguments : array();
     }
 
     /**

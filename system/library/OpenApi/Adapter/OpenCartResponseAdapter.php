@@ -2,7 +2,8 @@
 
 namespace OpenApi\Adapter;
 
-use OpenApi\BaseResponse;
+
+use OpenApi\Http\BaseResponse;
 
 class OpenCartResponseAdapter implements ResponseAdapterInterface
 {

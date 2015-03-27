@@ -22,10 +22,25 @@ class Controller extends \Controller
     }
 
     /**
-     * @return \OpenApi\Request
+     * @return \OpenApi\Http\Request
      */
     public function getRequest()
     {
        return $this->core->getRequest();
+    }
+
+    public function get($service)
+    {
+        return $this->core->get($service);
+    }
+
+    public function adminModel($model)
+    {
+        return $this->core->adminModel($model);
+    }
+
+    public function model($model)
+    {
+        return $this->core->model($model);
     }
 }

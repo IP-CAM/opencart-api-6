@@ -1,20 +1,22 @@
 <?php
 
-namespace OpenApi;
+namespace OpenApi\Http;
 
-class Response extends BaseResponse
+class JsonResponse extends BaseResponse
 {
-    private $data;
+
     private $headers = array();
+    private $data;
 
     public function __construct($data)
     {
         $this->data = $data;
+        $this->addHeader("Content-Type: " . ContentType::HTTP_CONTENT_TYPE_JSON);
     }
 
     public function doResponse()
     {
-        return $this->data;
+        return json_encode($this->data);
     }
 
     public function getHeaders()
@@ -26,5 +28,6 @@ class Response extends BaseResponse
     {
         $this->headers[] = $header;
     }
+
 
 }

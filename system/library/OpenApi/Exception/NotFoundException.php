@@ -2,7 +2,7 @@
 
 namespace OpenApi\Exception;
 
-use OpenApi\BaseResponse;
+use OpenApi\Http\BaseResponse;
 
 class NotFoundException extends ApiException
 {
