@@ -18,7 +18,7 @@ class Controller extends \Controller
 
     public function index()
     {
-        return $this->core->execute($this);
+        return $this->core->execute();
     }
 
     /**
