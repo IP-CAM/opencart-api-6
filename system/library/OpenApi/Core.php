@@ -45,7 +45,7 @@ class Core
         try {
             $action = $router->route();
 
-            if (!is_callable([$action->getController(), $action->getAction()])) {
+            if (!is_callable(array($action->getController(), $action->getAction()))) {
                 throw new NotFoundException("Page not found");
             }
 
@@ -65,7 +65,7 @@ class Core
                 }
             }
 
-            if (count($action->getArguments()) != $numberOfParameters) {
+            if (count($action->getArguments()) < $numberOfParameters) {
                 throw new UnprocessableEntityException(sprintf("Missing parameter, '%s' required", implode(" or ", $requiredParams)));
             }
 

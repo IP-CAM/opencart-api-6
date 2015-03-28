@@ -35,7 +35,7 @@ class Router
         $parts = explode("/", $action);
         $controller = sprintf("%s %s", array_shift($parts), "Controller");
         $method = array_shift($parts);
-        $arguments = $parts;
+        $arguments = array();
 
         $action = new Action(Core::PACKAGE, TextUtil::makeCamelCase($controller));
         $defaultAction = strtolower($httpRequestMethod) . ucfirst(Controller::DEFAULT_ACTION);
@@ -48,13 +48,20 @@ class Router
             throw new NotFoundException("Requested endpoint not found");
         }
 
-        if (!is_callable([$action->getController(), $requestedMethod])) {
+        if (!is_callable(array($action->getController(), $requestedMethod))) {
             if (!empty($method)) {
                 $arguments[] = $method;
             }
             $method = null;
         }
 
+        $arguments = array_merge($arguments, $parts); 
+        array_walk($arguments, function($value, $key) use (&$arguments){
+            $value = trim($value);
+            if (empty($value)) {
+                unset($arguments[$key]);
+            }
+        });
 
         $action->setArguments($arguments);
 
