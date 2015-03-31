@@ -17,6 +17,7 @@ class Core
 {
     const PACKAGE = "openapi";
 
+    
     private $request;
     private $registry;
     private $responseAdapter;
@@ -118,7 +119,7 @@ class Core
         throw new ServerException(sprintf("Unknown service '%s'", $service), BaseResponse::HTTP_INTERNAL_SERVER_ERROR);
     }
 
-    public function adminModel($model)
+    public function adminModel($model, $extends = null)
     {
         $registryName = sprintf("admin_model_%s", str_replace("/", "_", $model));
         try {
@@ -131,6 +132,10 @@ class Core
             return $modelInstance;
         }
 
+        if (null !== $extends) {
+            $this->getLoader()->adminModel($extends);
+        }
+
         $class = $this->getLoader()->adminModel($model);
         $instance = new $class($this->getRegistry());
         $this->getRegistry()->set($registryName, $instance);
@@ -139,7 +144,7 @@ class Core
 
     }
 
-    public function model($model)
+    public function model($model, $extends = null)
     {
         $registryName = sprintf("model_%s", str_replace("/", "_", $model));
         try {
@@ -150,6 +155,10 @@ class Core
 
         if (!empty($modelInstance)) {
             return $modelInstance;
+        }
+
+        if (null !== $extends) {
+            $this->getLoader()->model($extends);
         }
 
         $this->getLoader()->model($model);

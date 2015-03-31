@@ -34,13 +34,13 @@ class Controller extends \Controller
         return $this->core->get($service);
     }
 
-    public function adminModel($model)
+    public function adminModel($model, $extends = null)
     {
-        return $this->core->adminModel($model);
+        return $this->core->adminModel($model, $extends);
     }
 
-    public function model($model)
+    public function model($model, $extends = null)
     {
-        return $this->core->model($model);
+        return $this->core->model($model, $extends);
     }
 }
