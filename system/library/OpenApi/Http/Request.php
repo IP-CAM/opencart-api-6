@@ -81,6 +81,6 @@ class Request
 
     public function getDefaultContentType()
     {
-        return self::HTTP_CONTENT_TYPE_JSON;
+        return ContentType::HTTP_CONTENT_TYPE_JSON;
     }
 }
